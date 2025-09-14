@@ -8,12 +8,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, accuracy_score
 
 st.set_page_config(page_title="EDA Interactivo", layout="wide")
-st.title("Exploración de Datos Interactiva")
+st.title("Exploración de datos interactiva")
 
 # ---------------------
 # 1. Carga de datos
 # ---------------------
-st.sidebar.header("Carga de Datos")
+st.sidebar.header("Carga de datos")
 uploaded_file = st.sidebar.file_uploader("Sube tu CSV", type=["csv"])
 
 if uploaded_file:
@@ -24,7 +24,7 @@ if uploaded_file:
     # ---------------------
     # 2. Información general
     # ---------------------
-    st.subheader("Información General")
+    st.subheader("Información general")
     st.write("Dimensiones del dataset:", df.shape)
     st.write("Tipos de datos:")
     st.write(df.dtypes)
@@ -34,13 +34,13 @@ if uploaded_file:
     # ---------------------
     # 3. Estadísticas descriptivas
     # ---------------------
-    st.subheader("Estadísticas Descriptivas")
+    st.subheader("Estadísticas descriptivas")
     st.write(df.describe(include='all'))
 
     # ---------------------
     # 4. Visualización interactiva
     # ---------------------
-    st.subheader("Visualización de Datos")
+    st.subheader("Visualización de datos")
 
     numeric_cols = df.select_dtypes('number').columns.tolist()
     categorical_cols = df.select_dtypes('object').columns.tolist()
@@ -73,7 +73,7 @@ if uploaded_file:
     # ---------------------
     # 5. Correlación
     # ---------------------
-    st.subheader("Mapa de Correlación")
+    st.subheader("Mapa de correlación")
     corr = df[numeric_cols].corr()
     fig4, ax4 = plt.subplots(figsize=(10, 8))
     sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax4)
@@ -82,7 +82,7 @@ if uploaded_file:
     # ---------------------
     # 6. Mini modelo predictivo
     # ---------------------
-    st.subheader("Mini Modelo Predictivo (opcional)")
+    st.subheader("Mini modelo predictivo (beta)")
     target_col = st.selectbox("Selecciona columna target", numeric_cols, key="target")
     feature_cols = st.multiselect("Selecciona columnas predictoras", numeric_cols, default=[c for c in numeric_cols if c != target_col])
 
